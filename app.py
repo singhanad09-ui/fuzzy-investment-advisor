@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------
-# PROJECT: Fuzzy Investment Advisor - Remove Text, Fix Button
+# PROJECT: Fuzzy Investment Advisor - Remove Green Box
 # FILE: app.py
 # AUTHOR: (Your Name) / Gemini AI
 # REQUIRES: pip install streamlit pandas plotly pillow
@@ -112,7 +112,11 @@ st.markdown("""
     }
     h1 { font-size: 3.0em; padding-bottom: 15px; margin-top: 0; }
     h2 { font-size: 2.2em; margin-bottom: 15px; margin-top: 0; }
-    h3 { font-size: 1.6em; margin-bottom: 10px; margin-top: 0; }
+    h3 { 
+        font-size: 1.6em; 
+        margin-bottom: 0px; /* <<< (แก้ไข) ลดช่องว่างใต้ H3 */
+        margin-top: 0; 
+    }
 
     /* --- Text Alignment --- */
     .st-emotion-cache-16txtl3 { /* This is a common Streamlit container class */
@@ -190,18 +194,17 @@ st.markdown("""
 
     /* --- Output Box --- */
     .output-box {
-        background-color: #D1FAE5; /* Light Green */
-        padding: 25px;
-        border-radius: 10px;
-        margin-top: 20px;
+        background-color: transparent !important; /* <<< (แก้ไข) ลบกล่องเขียวอ่อน */
+        padding: 0px; /* <<< (แก้ไข) ลบ padding */
+        margin-top: 0px; /* <<< (แก้ไข) ลบ margin */
         text-align: left;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        box-shadow: none; /* <<< (แก้ไข) ลบเงา */
         height: 100%;
     }
     .output-box h3 {
         text-align: left !important;
         font-size: 1.5em;
-        margin-bottom: 12px;
+        margin-bottom: 5px; /* <<< (แก้ไข) ลดช่องว่างด้านล่าง */
     }
     .output-box p {
         font-size: 1.0em;
@@ -278,11 +281,6 @@ def home_page():
     st.markdown('<div class="header-box">FIA: Fuzzy Investment Advisor</div>', unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center;'>ระบบผู้ช่วยประเมินและแนะนำการลงทุนอัจฉริยะด้วย AI (Fuzzy Logic)</h3>", unsafe_allow_html=True)
     
-    # --- (ลบ) ข้อความ "แพลตฟอร์มนี้ช่วย..." ออก ---
-    # st.markdown("<p style='text-align: center;'>แพลตฟอร์มนี้ช่วยวิเคราะห์ระดับความเสี่ยงของคุณและแนะนำสัดส่วนพอร์ตการลงทุนที่เหมาะสม</p>", unsafe_allow_html=True)
-    # st.markdown("<p style='text-align: center;'>&nbsp;</p>", unsafe_allow_html=True)
-    # --- (สิ้นสุดการลบ) ---
-
     st.markdown(
         """
         <div class="disclaimer-box">
@@ -436,7 +434,7 @@ def output_page():
 
         st.markdown('</div>', unsafe_allow_html=True)
 
-    st.write("")
+    # --- (ลบ) st.write("") ออกแล้ว ---
     
     col_btn1, col_btn2, col_btn3 = st.columns([2, 1, 2])
     with col_btn2:
